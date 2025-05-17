@@ -18,6 +18,69 @@ namespace Artemplate.Controllers
             _converter = converter;
         }
 
+        [HttpGet("nascimento-de-venus")]
+        public async Task<IActionResult> GetNascimentoDeVenusHtmlAsync()
+        {
+            var request = new ObraRequest
+            {
+                Titulo = "O Nascimento de Vênus",
+                Subtitulo = "Sandro Botticelli · c. 1485",
+                UrlImagem = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1920px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+                Descricao = "O Nascimento de Vênus é uma das obras mais emblemáticas do Renascimento italiano. Pintada por Sandro Botticelli por volta de 1485, retrata a deusa romana emergindo do mar sobre uma concha, sendo recebida por uma das Horas, deidades que representam as estações. A pintura é celebrada pela elegância linear e pela idealização da forma humana, representando a beleza divina e a mitologia clássica. Vênus, com sua expressão serena e corpo gracioso, simboliza tanto o amor espiritual quanto o físico.",
+                Biografia = "Sandro Botticelli (c. 1445–1510) foi um dos principais pintores do Renascimento italiano. Ativo em Florença, Botticelli era conhecido por suas obras que combinavam elegância formal com narrativas mitológicas e religiosas. Trabalhou sob o patrocínio da poderosa família Médici e deixou um legado artístico que influenciou gerações futuras. Seu estilo refinado e poético é reconhecido por sua delicadeza e riqueza simbólica.",
+                NomeArtista = "Sandro Botticelli",
+                Ano = "c. 1485",
+                Tecnica = "Têmpera sobre tela",
+                Dimensoes = "172.5 cm × 278.9 cm",
+                Localizacao = "Galeria Uffizi, Florença",
+                Categorias = "Renascimento, Mitologia, Arte clássica"
+            };
+
+            return await GerarPdfObraAsync(request);
+        }
+
+        [HttpGet("mona-lisa")]
+        public async Task<IActionResult> GetMonaLisaHtmlAsync()
+        {
+            var request = new ObraRequest
+            {
+                Titulo = "Mona Lisa",
+                Subtitulo = "Leonardo da Vinci · c. 1503–1506",
+                UrlImagem = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/330px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
+                Descricao = "A Mona Lisa, pintada por Leonardo da Vinci entre 1503 e 1506, é considerada a pintura mais famosa do mundo. A obra retrata uma mulher com um sorriso enigmático, vestida de forma modesta e posicionada diante de uma paisagem idealizada. O uso do sfumato — técnica que suaviza as transições de cor e luz — confere à figura uma aura etérea e misteriosa. A identidade da modelo é amplamente aceita como sendo Lisa Gherardini, esposa de um comerciante florentino. Sua expressão ambígua, combinada com a habilidade técnica de Da Vinci, transformou a obra em um símbolo de perfeição artística e um enigma que fascina estudiosos até hoje.",
+                Biografia = "Leonardo da Vinci (1452–1519) foi um dos maiores gênios do Renascimento, atuando como pintor, engenheiro, cientista, inventor e anatomista. Conhecido por sua incansável curiosidade e espírito visionário, deixou um legado que vai muito além da arte. Suas contribuições à ciência, engenharia e medicina foram documentadas em milhares de páginas de cadernos. Como pintor, é reconhecido por obras como A Última Ceia e a própria Mona Lisa, nas quais combinou observação aguda com inovação técnica.",
+                NomeArtista = "Leonardo da Vinci",
+                Ano = "c. 1503–1506",
+                Tecnica = "Óleo sobre madeira",
+                Dimensoes = "77 cm x 53 cm",
+                Localizacao = "Museu do Louvre, Paris",
+                Categorias = "Renascimento, Retrato"
+            };
+
+            return await GerarPdfObraAsync(request);
+        }
+
+        [HttpGet("guernica")]
+        public async Task<IActionResult> GetGuernicaHtmlAsync()
+        {
+            var request = new ObraRequest
+            {
+                Titulo = "Guernica",
+                Subtitulo = "Pablo Picasso · 1937",
+                UrlImagem = "https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg",
+                Descricao = "Guernica é uma das mais poderosas obras de protesto contra a guerra já criadas. Pintada por Pablo Picasso em resposta ao bombardeio da cidade de Guernica, no País Basco, durante a Guerra Civil Espanhola, a obra utiliza uma paleta monocromática em preto, branco e cinza para retratar o sofrimento humano e animal causado pelo conflito. Com figuras distorcidas e símbolos como o touro, o cavalo ferido e a mulher com uma lâmpada, Picasso construiu uma alegoria visual angustiante da violência, da dor e da desesperança provocadas pela guerra moderna.",
+                Biografia = "Pablo Picasso (1881–1973) foi um pintor e escultor espanhol, cofundador do movimento cubista e um dos artistas mais influentes do século XX. Inovador incansável, Picasso explorou diversos estilos ao longo de sua carreira, como o período azul, rosa, cubismo e surrealismo. Produziu mais de 20.000 obras, incluindo pinturas, esculturas, cerâmicas e gravuras. 'Guernica' é uma de suas obras mais politicamente engajadas, tendo se tornado um símbolo universal da paz.",
+                NomeArtista = "Pablo Picasso",
+                Ano = "1937",
+                Tecnica = "Óleo sobre tela",
+                Dimensoes = "349 cm × 776 cm",
+                Localizacao = "Museu Reina Sofía, Madri",
+                Categorias = "Cubismo, Arte política, Antiguerra"
+            };
+
+            return await GerarPdfObraAsync(request);
+        }
+
         [HttpGet("noite-estrelada")]
         public async Task<IActionResult> GetNoiteEstreladaHtmlAsync()
         {
@@ -84,7 +147,7 @@ namespace Artemplate.Controllers
             };
 
             var pdf = _converter.Convert(doc);
-            return File(pdf, "application/pdf", "obra.pdf");
+            return File(pdf, "application/pdf", $"{request.Titulo}.pdf");
         }
     }
 }
