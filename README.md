@@ -1,6 +1,6 @@
 # 📄 Gerador de PDF de Obras de Arte
 
-Uma API em .NET que gera u, PDF a partir de um template HTML com informações sobre uma obra de arte. Utiliza `DinkToPdf` (wkhtmltopdf) para renderizar o conteúdo com suporte a imagens, fontes personalizadas e metadados.
+Uma API em .NET que gera um PDF a partir de um template HTML com informações sobre uma obra de arte. Utiliza `DinkToPdf` (wkhtmltopdf) para renderizar o conteúdo com suporte a imagens, fontes personalizadas e metadados.
 
 ## 🔧 Funcionalidades
 
